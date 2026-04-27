@@ -2,6 +2,7 @@ import { Server } from "http";
 import app from "./app";
 import config from "./app/config";
 import { prisma } from "./app/db_connection/prisma";
+import { seedData } from "./app/seedData/seedFoodData";
 
 
 let server: Server;
@@ -24,6 +25,7 @@ const startServer = async () => {
 // Start server
 (async () => {
   await startServer();
+  await seedData();
 })()
 
 process.on("unhandledRejection", async (err) => {
