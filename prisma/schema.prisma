@@ -1,0 +1,32 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Food {
+  id                Int       @id
+  name              String?   @db.VarChar(150)
+  category          String?   @db.VarChar(50)
+  cuisine           String?   @db.VarChar(50)
+  description       String?
+  price             Decimal?  @db.Decimal(10, 2)
+  discount_percent  Int?
+  discounted_price  Decimal?  @db.Decimal(10, 2)
+  calories          Int?
+  prep_time_minutes Int?
+  spice_level       String?   @db.VarChar(20)
+  dietary_tag       String?   @db.VarChar(30)
+  rating            Decimal?  @db.Decimal(3, 1)
+  review_count      Int?
+  is_available      String?   @db.VarChar(20)
+  is_featured       String?   @db.VarChar(5)
+  is_new            String?   @db.VarChar(5)
+  image_url         String?
+  created_at        DateTime? @db.Date
+
+  @@map("food")
+}
